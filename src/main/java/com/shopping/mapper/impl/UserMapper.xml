@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shopping.mapper.UserMapper">
+
+
+    <select id="selectUserById" resultType="com.shopping.entity.UserBean">
+        SELECT
+            id,
+            username,
+            nickname,
+            realname,
+            `password`,
+            salt,
+            email,
+            email_status,
+            mobile,
+            mobile_status,
+            telephone,
+            amount,
+            gender,
+            role_id roleId,
+            signature,
+            content_count contentCount,
+            comment_count commentCount,
+            qq,
+            wechat,
+            weibo,
+            facebook,
+            linkedin,
+            birthday,
+            company,
+            occupation,
+            address,
+            zipcode,
+            site,
+            graduateschool,
+            education,
+            avatar,
+            idcard,
+            idcardtype,
+            user_level_id,
+            user_integral,
+            user_balance userBalance,
+            superior_user_id superiorUserId
+        FROM
+            tb_user
+        where id = #{id}
+    </select>
+
+    <select id="selectUserByTelephone" resultType="com.shopping.entity.UserBean">
+             SELECT
+            id,
+            username,
+            nickname,
+            realname,
+            `password`,
+            salt,
+            email,
+            email_status,
+            mobile,
+            mobile_status,
+            telephone,
+            amount,
+            gender,
+            role_id roleId,
+            signature,
+            content_count contentCount,
+            comment_count commentCount,
+            qq,
+            wechat,
+            weibo,
+            facebook,
+            linkedin,
+            birthday,
+            company,
+            occupation,
+            address,
+            zipcode,
+            site,
+            graduateschool,
+            education,
+            avatar,
+            idcard,
+            idcardtype,
+            user_level_id,
+            user_integral,
+            user_balance userBalance,
+            superior_user_id superiorUserId
+        FROM
+            tb_user
+        where telephone = #{telephone}
+    </select>
+
+    <insert id="insertUser" parameterType="com.shopping.entity.UserBean">
+        insert into tb_user(username,nickname,PASSWORD,created,superior_user_id,telephone)
+        values(#{userName},#{nickName},#{password},now(),#{superiorUserId},#{telephone})
+    </insert>
+
+    <update id="addUserBalance">
+        update tb_user
+        set
+        user_balance = user_balance+#{money}
+        where id =#{userId}
+    </update>
+
+    <select id="getLowerUserList" resultType="com.shopping.vo.GetLowerUserRespDto">
+        SELECT
+            id userId,
+            username userName,
+            nickname nickName,
+            realname realName,
+            telephone telephone,
+            avatar avatar
+        FROM
+            tb_user
+        WHERE
+            superior_user_id = #{userId}
+        order by id
+        LIMIT #{startIndex},#{endIndex}
+    </select>
+</mapper>

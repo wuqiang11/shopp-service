@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shopping.mapper.TransactionRecordMapper">
+
+    <insert id="inserTransactionRecord" parameterType="com.shopping.entity.TransactionRecordBean">
+        INSERT INTO tb_transaction_record (
+            user_id,
+            product_id,
+            lower_user,
+            transaction_type,
+            pay_type,
+            income_type,
+            transaction_money,
+            transaction_time,
+            transaction_balance,
+            pay_status,
+            third_transaction_record
+        )
+        VALUES
+            ( #{userId},#{productId},#{lowerUser},#{transactionType},#{payType},#{incomeType},#{ttransactionMoney},now(),#{transactionBalance},#{payStatus},#{thirdTransactionRecord}
+            )
+    </insert>
+</mapper>

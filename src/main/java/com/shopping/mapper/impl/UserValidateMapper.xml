@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shopping.mapper.UserValidateMapper">
+
+    <select id="selectUserValidate" resultType="com.shopping.entity.UserValidateCodeBean">
+        SELECT
+            id,
+            phone,
+            validate_code validateCode,
+            use_status useStatus
+        FROM
+            tb_user_validate_code
+        where phone =#{phone}
+        and validate_code = #{validateCode}
+        and use_status =0
+    </select>
+
+    <update id="updateUserValidateStatus">
+        UPDATE tb_user_validate_code
+        SET use_status = 1
+        WHERE
+            phone = #{phone}
+        AND validate_code = #{validateCode}
+        AND use_status = 0
+    </update>
+
+    <update id="updateStatusTask">
+        UPDATE tb_user_validate_code
+        SET use_status = 1,
+         update_time = now()
+        WHERE
+            NOW() >= over_time
+        AND use_status = 0
+    </update>
+</mapper>

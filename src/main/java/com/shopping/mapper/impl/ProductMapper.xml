@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shopping.mapper.ProductMapper">
+
+    <select id="getProductList" resultType="com.shopping.entity.ProductBean">
+        SELECT
+            id,
+            NAME,
+            caption,
+            thumbnail,
+            introduction,
+            sn,
+            sales,
+            price,
+            marketPrice,
+            stock,
+            parameterValue,
+            sort_num,
+            isRecommend,
+            superior_rebate_money superiorRebateMoney,
+            rebate_rule rebateRule,
+            product_label productLabel,
+            product_type productType,
+            product_property productProperty,
+            extract_type extractType
+        FROM
+            tb_product
+        where active=0
+        and isMarketable =1
+        <if test=" null != isRecommend and ''!= isRecommend and 1==isRecommend">
+            and isRecommend=1
+        </if>
+        <if test=" null != productName and ''!= productName">
+            and `name` LIKE CONCAT('%',#{productName},'%')
+        </if>
+        order by id
+        limit #{startIndex},#{endIndex}
+    </select>
+
+    <select id="getProductById" resultType="com.shopping.entity.ProductBean">
+         SELECT
+            id,
+            NAME,
+            caption,
+            thumbnail,
+            introduction,
+            sn,
+            sales,
+            price,
+            marketPrice,
+            stock,
+            parameterValue,
+            sort_num,
+            isRecommend,
+            superior_rebate_money superiorRebateMoney,
+            rebate_rule rebateRule,
+            product_label productLabel,
+            product_type productType,
+            product_property productProperty,
+            extract_type extractType
+        FROM
+            tb_product
+        where id= #{id}
+    </select>
+</mapper>

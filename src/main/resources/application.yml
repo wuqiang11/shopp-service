@@ -1,0 +1,123 @@
+
+server:
+  port: 8081
+  tomcat:
+    accept-count: 200
+    max-connections: 10000
+    max-threads: 1000
+    min-spare-threads: 100
+    uri-encoding: utf-8
+  servlet:
+    context-path: /shop_api
+
+
+###################  spring配置  ###################
+spring:
+  application:
+    name: shop-service
+  profiles:
+    active: dev
+  aop:
+    proxy-target-class: true
+  resources:
+    static-locations:
+      - file:.static/,classpath:/META-INF/resources/,classpath:/static/
+  #freemarker
+  freemarker:
+    enabled: true
+    cache: false
+    suffix: .html
+    expose-spring-macro-helpers: true
+    expose-request-attributes: true
+    expose-session-attributes: true
+    request-context-attribute: request
+    template-loader-path:
+      - "file:./templates/"   #该配置为把templates目录可以外置到jar包外指定目录
+      - classpath:/templates/
+    settings:
+      number_format: "0.######"
+      boolean_format: true,false
+      datetime_format: yyyy-MM-dd HH:mm:ss
+      date_format: yyyy-MM-dd
+      time_format: HH:mm:ss
+      whitespace_stripping: true
+      tag_syntax: auto_detect
+      classic_compatible: true
+      default_encoding: utf-8
+      defaultEncoding: utf-8
+      url_escaping_charset: utf-8
+      localized_lookup: false
+      object_wrapper: freemarker.ext.beans.BeansWrapper
+      template_update_delay: 10 #10秒刷一次
+  #freemarker settings  end-------------------------------------
+
+
+  #数据库连接池配置
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    druid:
+      initial-size: 20
+      max-active: 500
+      min-idle: 1
+      max-wait: 60000
+      validation-query: SELECT 'x'
+      validation-query-timeout: 3000
+      test-on-borrow:  false
+      test-on-return: false
+      test-while-idle: true
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      filters: mergeStat,wall,slf4j
+    query-timeout: 5000
+
+
+###################  mybatis-plus配置  ###################
+mybatis-plus:
+  mapper-locations: classpath*:com/shopping/mapper/**/*.xml
+  global-config:
+    id-type: 0  #0:数据库ID自增   1:用户输入id  2:全局唯一id(IdWorker)  3:全局唯一ID(uuid)
+    db-column-underline: true
+    refresh-mapper: false
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false #配置的缓存的全局开关
+    use-generated-keys: true #允许jdbc自动生成id
+    lazyLoadingEnabled: true #延时加载的开关
+    multipleResultSetsEnabled: true #开启的话，延时加载一个属性时会加载该对象全部属性，否则按需加载属性
+    mapUnderscoreToCamelCase: true #自动驼峰映射
+    #log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #打印sq
+  type-aliases-package: com.shopping.vo
+
+
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  pageSizeZero: true
+  params: count=countSql
+
+
+logging:
+  level:
+    root: info
+  path: ${catalina.base:.}/logs
+
+ons:
+  client:
+    logRoot: ${catalina.base:.}/logs
+
+management:
+  endpoint:
+    health:
+      show-details: always
+    metrics:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: ["metrics","health","info"]
+  metrics:
+    enable:
+      all: true
+
+

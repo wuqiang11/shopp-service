@@ -1,0 +1,23 @@
+##########################################################
+###################  开发环境的profile  ###################
+##########################################################
+
+spring:
+  datasource:
+      url: jdbc:mysql://127.0.0.1:3306/test?serverTimezone=UTC
+      username: root
+      password: 123456
+      druid:
+        initial-size: 5
+
+
+  freemarker:
+    settings:
+      template_update_delay: 0 #0秒刷一次
+
+logging:
+  level:
+    root: info
+    com.adyx: info
+
+
