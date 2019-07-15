@@ -25,6 +25,9 @@ public class OrderListReqDto implements Serializable {
     @Min(value = 1,errorCode = "1001",message = "页数从1起始")
     private Long pageNumber;
 
+    @NotNull(errorCode = "1001",message = "订单状态不能为空")
+    private Long orderStatus;
+
     public Long getPageSize() {
         return pageSize;
     }
@@ -41,11 +44,20 @@ public class OrderListReqDto implements Serializable {
         this.pageNumber = pageNumber;
     }
 
+    public Long getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(Long orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
     @Override
     public String toString() {
         return "OrderListReqDto{" +
                 "pageSize=" + pageSize +
                 ", pageNumber=" + pageNumber +
+                ", orderStatus=" + orderStatus +
                 '}';
     }
 }

@@ -3,10 +3,51 @@
 <mapper namespace="com.shopping.mapper.OrderMapper">
 
     <select id="selectOrderList" resultType="com.shopping.entity.OrderBean">
-
+            SELECT
+                id,
+                userId,
+                orderSN,
+                order_status orderStatus,
+                payment_status paymentStatus,
+                address,
+                totalPrice,
+                postFee,
+                payFee,
+                youhuis,
+                coupon_name couponName,
+                coupon_money couponMoney,
+                user_coupon_id userCouponId,
+                remark
+            FROM
+                tb_order
+            WHERE
+                active = 0
+                <if test=" null != orderStatus and ''!=orderStatus and 8!= orderStatus">
+                    and order_status =#{orderStatus}
+                </if>
+            ORDER BY
+                id DESC
+            limit #{pageNumber},#{pageSize}
     </select>
 
     <select id="selectOrderDetail" resultType="com.shopping.entity.OrderBean">
-
+        SELECT
+                id,
+                userId,
+                orderSN,
+                order_status orderStatus,
+                payment_status paymentStatus,
+                address,
+                totalPrice,
+                postFee,
+                payFee,
+                youhuis,
+                coupon_name couponName,
+                coupon_money couponMoney,
+                user_coupon_id userCouponId,
+                remark
+            FROM
+                tb_order
+            where id =#{orderId}
     </select>
 </mapper>

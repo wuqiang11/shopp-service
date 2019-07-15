@@ -16,7 +16,7 @@ public interface OrderMapper {
      * @param pageSize
      * @return
      */
-    public List<OrderBean> selectOrderList(@Param("pageNumber") Long pageNumber, @Param("pageSize") Long pageSize);
+    public List<OrderBean> selectOrderList(@Param("pageNumber") Long pageNumber, @Param("pageSize") Long pageSize,@Param("orderStatus") Long orderStatus);
 
     /**
      * 查询订单详情

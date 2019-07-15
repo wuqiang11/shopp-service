@@ -36,7 +36,7 @@ public class OrderService extends BaseService {
 
         Long startIndex = (reqDto.getPageNumber() - 1) * reqDto.getPageSize();
         Long endIndex = reqDto.getPageSize();
-        List<OrderBean> list = orderMapper.selectOrderList(startIndex, endIndex);
+        List<OrderBean> list = orderMapper.selectOrderList(startIndex, endIndex,reqDto.getOrderStatus());
         return new SuccessTip(BaseRespConstants.NEW_SUCCESS.getMsg(), list);
     }
 
