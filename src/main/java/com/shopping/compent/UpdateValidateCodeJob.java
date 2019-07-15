@@ -2,7 +2,6 @@ package com.shopping.compent;
 
 import com.shopping.mapper.UserValidateMapper;
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 
@@ -13,7 +12,6 @@ import javax.annotation.Resource;
  * @param:
  * @return:
  */
-@Component
 public class UpdateValidateCodeJob {
 
     @Resource
