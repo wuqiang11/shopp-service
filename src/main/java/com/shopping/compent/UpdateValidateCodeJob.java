@@ -13,6 +13,7 @@ import javax.annotation.Resource;
  * @param:
  * @return:
  */
+@Component
 public class UpdateValidateCodeJob {
 
     @Resource
