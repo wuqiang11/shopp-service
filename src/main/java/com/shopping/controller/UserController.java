@@ -3,6 +3,7 @@ package com.shopping.controller;
 import com.shopping.dto.GetUserInfoReqDto;
 import com.shopping.entity.Tip;
 import com.shopping.service.UserService;
+import com.shopping.util.OvalValidationUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -18,13 +19,14 @@ public class UserController {
 
     /**
      * 获取用户信息
+     *
      * @param reqDto
      * @return
      */
     @RequestMapping("/api/user/getUserInfo")
     @ResponseBody
-    public Tip getUserInfo(@Valid GetUserInfoReqDto reqDto)
-    {
+    public Tip getUserInfo(GetUserInfoReqDto reqDto) {
+        OvalValidationUtils.validate(reqDto);
         return userService.getUserInfo(reqDto);
     }
 }

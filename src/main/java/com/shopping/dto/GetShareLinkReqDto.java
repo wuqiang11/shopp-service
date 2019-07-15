@@ -1,11 +1,12 @@
 package com.shopping.dto;
 
-import javax.validation.constraints.NotNull;
+import net.sf.oval.constraint.NotNull;
+
 import java.io.Serializable;
 
 public class GetShareLinkReqDto implements Serializable {
 
-    @NotNull(message = "用户ID不能为空")
+    @NotNull(message = "用户ID不能为空", errorCode = "1001")
     private Long userId;
 
     public Long getUserId() {

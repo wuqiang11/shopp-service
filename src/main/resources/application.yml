@@ -54,7 +54,7 @@ spring:
 
   #数据库连接池配置
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     druid:
       initial-size: 20
       max-active: 500

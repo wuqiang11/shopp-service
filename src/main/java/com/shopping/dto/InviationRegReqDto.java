@@ -1,17 +1,18 @@
 package com.shopping.dto;
 
-import javax.validation.constraints.NotNull;
+import net.sf.oval.constraint.NotNull;
+
 import java.io.Serializable;
 
 public class InviationRegReqDto implements Serializable {
 
-    @NotNull(message = "邀请用户ID不能为空")
+    @NotNull(message = "邀请用户ID不能为空", errorCode = "1001")
     private Long inviateUserId;
 
-    @NotNull(message = "手机号不能为空")
+    @NotNull(message = "手机号不能为空", errorCode = "1001")
     private String phone;
 
-    @NotNull(message = "验证码不能为空")
+    @NotNull(message = "验证码不能为空", errorCode = "1001")
     private String code;
 
     public Long getInviateUserId() {

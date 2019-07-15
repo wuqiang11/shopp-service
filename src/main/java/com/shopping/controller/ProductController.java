@@ -4,6 +4,7 @@ import com.shopping.dto.ProductDetailReqDto;
 import com.shopping.dto.ProductListReqDto;
 import com.shopping.entity.Tip;
 import com.shopping.service.ProductService;
+import com.shopping.util.OvalValidationUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -25,6 +26,7 @@ public class ProductController {
     @ResponseBody
     public Tip productList(ProductListReqDto reqDto)
     {
+        OvalValidationUtils.validate(reqDto);
         return  productService.productList(reqDto);
     }
 
@@ -37,6 +39,7 @@ public class ProductController {
     @ResponseBody
     public Tip productDetail(ProductDetailReqDto reqDto)
     {
+        OvalValidationUtils.validate(reqDto);
         return productService.productDetail(reqDto);
     }
 }

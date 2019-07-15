@@ -1,6 +1,7 @@
 package com.shopping.dto;
 
-import javax.validation.constraints.NotNull;
+import net.sf.oval.constraint.NotNull;
+
 import java.io.Serializable;
 
 public class ProductListReqDto implements Serializable {
@@ -9,10 +10,10 @@ public class ProductListReqDto implements Serializable {
 
     private Long isRecommend;
 
-    @NotNull(message = "当前页数不能为空")
+    @NotNull(message = "当前页数不能为空", errorCode = "1001")
     private Long pageNumber;
 
-    @NotNull(message = "每页条数不能为空")
+    @NotNull(message = "每页条数不能为空", errorCode = "1001")
     private Long pageSize;
 
     public String getProductName() {

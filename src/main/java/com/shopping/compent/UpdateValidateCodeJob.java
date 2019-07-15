@@ -6,7 +6,13 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 
-@Component
+/**
+ * 
+ * @author: wuqiang
+ * @date: 2019/7/15 0015 15:36
+ * @param:
+ * @return:
+ */
 public class UpdateValidateCodeJob {
 
     @Resource
