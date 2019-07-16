@@ -1,5 +1,6 @@
 package com.shopping.controller;
 
+import com.shopping.dto.CancelOrderReqDto;
 import com.shopping.dto.OrderDetailReqDto;
 import com.shopping.dto.OrderListReqDto;
 import com.shopping.entity.Tip;
@@ -49,5 +50,18 @@ public class OrderController {
     {
         OvalValidationUtils.validate(reqDto);
         return orderService.orderDetail(reqDto);
+    }
+
+    /**
+     *  取消或者删除订单
+     * @param reqDto
+     * @return
+     */
+    @RequestMapping(value = "/api/order/cancelOrDelOrder",method = RequestMethod.POST)
+    @ResponseBody
+    public Tip cancelOrDelOrder(CancelOrderReqDto reqDto)
+    {
+        OvalValidationUtils.validate(reqDto);
+        return orderService.cancelOrDelOrder(reqDto);
     }
 }

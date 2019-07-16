@@ -50,4 +50,22 @@
                 tb_order
             where id =#{orderId}
     </select>
+    
+    <update id="cancelOrder">
+        update tb_order
+        set order_status=7
+        where id =#{orderId}
+    </update>
+
+    <update id="deleteOrder">
+        update tb_order
+        set active=1
+        where id =#{orderId}
+    </update>
+
+    <update id="confirmOrder">
+         update tb_order
+        set order_status=3
+        where id =#{orderId}
+    </update>
 </mapper>

@@ -16,7 +16,7 @@ public interface OrderMapper {
      * @param pageSize
      * @return
      */
-    public List<OrderBean> selectOrderList(@Param("pageNumber") Long pageNumber, @Param("pageSize") Long pageSize,@Param("orderStatus") Long orderStatus);
+    public List<OrderBean> selectOrderList(@Param("pageNumber") Long pageNumber, @Param("pageSize") Long pageSize, @Param("orderStatus") Long orderStatus);
 
     /**
      * 查询订单详情
@@ -25,4 +25,27 @@ public interface OrderMapper {
      * @return
      */
     public OrderBean selectOrderDetail(@Param("orderId") Long orderId);
+
+    /**
+     * 取消订单
+     *
+     * @param orderId
+     * @return
+     */
+    public int cancelOrder(@Param("orderId") Long orderId);
+
+    /**
+     * 删除订单
+     *
+     * @param orderId
+     * @return
+     */
+    public int deleteOrder(@Param("orderId") Long orderId);
+
+    /**
+     * 确认收货
+     * @param orderId
+     * @return
+     */
+    public int confirmOrder(@Param("orderId") Long orderId);
 }
