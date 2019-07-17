@@ -20,4 +20,19 @@
             ( #{userId},#{productId},#{lowerUser},#{transactionType},#{payType},#{incomeType},#{ttransactionMoney},now(),#{transactionBalance},#{payStatus},#{thirdTransactionRecord}
             )
     </insert>
+
+    <select id="selectTransactionRecordList" resultType="com.shopping.entity.TransactionRecordBean">
+        SELECT
+            id,
+            user_id userId,
+            transaction_type transactionType,
+            income_type incomeType,
+            transaction_money transactionMoney,
+            DATE_FORMAT(transaction_time,'%Y-%m-%d %H:%i:%s') transactionTime
+        FROM
+            tb_transaction_record
+        where is_delete=0
+            and user_id = #{userId}
+        order by create_time DESC
+    </select>
 </mapper>
